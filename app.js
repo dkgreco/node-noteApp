@@ -1,12 +1,33 @@
-const fs = require('fs'),
-    getNotes = require('./utils/notes'),
-    chalk = require('chalk');
+//Program Constants
+const
+    //Node Core Modules
+    fs = require('fs'),
 
-const error = chalk.bold.red.underline,
-    success = chalk.bold.greenBright.underline.inverse;
+    //Developer Custom Libs
+    commandOptions = require('./utils/pco'),
 
-console.log(error('Error: Broken Chain Upstream...'));
-console.log(success('Successfully integrated chalk!!'));
+    //Third Party Libs
+    yargs = require('yargs'),
 
-//fs.writeFileSync('notes.txt', 'Text to place into the file.');
-//fs.appendFileSync('notes.txt', 'New Material appended yo.');
+    //Console & Logging Customizations
+    logError = require('./utils/errHandler').logError,
+    errMsg0 = 'Invalid Command Supplied.  Program Terminated.',
+
+    //Program Source Values
+    UICommand = yargs.argv._[0];
+
+//Program Temp Variables
+let validatedUICommand = commandOptions.find(commandOption => commandOption.c === UICommand),
+    //Error Trap - Invalid Command Provided
+    selectedOption = (validatedUICommand === undefined) ? logError(errMsg0) : validatedUICommand;
+
+//Program Command Delegator
+yargs.command({
+    command: selectedOption.c,
+    describe: selectedOption.d,
+    builder: selectedOption.b,
+    handler: selectedOption.h
+});
+
+//Execute the Command
+yargs.parse();
