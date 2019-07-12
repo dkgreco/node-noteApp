@@ -1,8 +1,5 @@
 //Program Constants
 const
-    //Node Core Modules
-    fs = require('fs'),
-
     //Developer Custom Libs
     commandOptions = require('./utils/pco'),
 
