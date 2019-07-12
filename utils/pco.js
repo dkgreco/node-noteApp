@@ -42,8 +42,16 @@ const
     {
         "c": "read",
         "d": "Read a note from the program generated file.",
-        "h": function() {
+        "b": {
+            "title": {
+                "describe": "Title of Note To Fetch",
+                "demandOption": true,
+                "type": "string"
+            }
+        },
+        "h": function(argv) {
             console.log("Fetching a note from the PG file.");
+            noteUtils.readNote(argv);
         }
     },
     {
