@@ -3,7 +3,7 @@ const
     fs = require('fs'),
 
     //Program Variables
-    fileName = 'notes.json',
+    fileName = 'data/notes.json',
 
     //Program Error Handling Variables
     logError = require('./errHandler').logError,
