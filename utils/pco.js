@@ -19,11 +19,8 @@ const
                 "type": "string"
             }
         },
-        "h": function(argv) {
-            console.log("Creating note and adding it to the PG file.", argv);
-            noteUtils.createNote(argv);
-        }
-    },
+        delegateTask(argv) { noteUtils.createNote(argv) }
+    } ,
     {
         "c": "remove",
         "d": "Remove a note from the program generated file.",
@@ -34,10 +31,7 @@ const
                 "type": "string"
             }
         },
-        "h": function(argv) {
-            console.log("Removing note from the PG file.");
-            noteUtils.removeNote(argv);
-        }
+        delegateTask(argv) { noteUtils.removeNote(argv) }
     },
     {
         "c": "read",
@@ -49,18 +43,12 @@ const
                 "type": "string"
             }
         },
-        "h": function(argv) {
-            console.log("Fetching a note from the PG file.");
-            noteUtils.readNote(argv);
-        }
+        delegateTask(argv) { noteUtils.readNote(argv) }
     },
     {
         "c": "list",
         "d": "List all notes from the program generated file.",
-        "h": function() {
-            console.log("Fetching all notes from the PG file.");
-            noteUtils.listNotes();
-        }
+        delegateTask() { noteUtils.listNotes() }
     }
 ];
 

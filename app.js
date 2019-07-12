@@ -14,7 +14,8 @@ const
     UICommand = yargs.argv._[0];
 
 //Program Temp Variables
-let validatedUICommand = commandOptions.find(commandOption => commandOption.c === UICommand),
+let validatedUICommand = commandOptions.find(commandOption => commandOption.c === UICommand);
+
     //Error Trap - Invalid Command Provided
     selectedOption = (validatedUICommand === undefined) ? logError(errMsg0) : validatedUICommand;
 
@@ -23,7 +24,7 @@ yargs.command({
     command: selectedOption.c,
     describe: selectedOption.d,
     builder: selectedOption.b,
-    handler: selectedOption.h
+    handler: selectedOption.delegateTask(yargs.argv)
 });
 
 //Execute the Command

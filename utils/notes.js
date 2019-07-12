@@ -12,6 +12,7 @@ const
     errMsg2 = '. Unable to Remove.',
     errMsg3 = 'Title Already Taken.  Please re-add note with a different title...',
     errMsg4 = 'Title for Note does not exist. Read Failed...',
+    errMsg5 = 'Title or Body Missing. Create Failed...',
 
     //Program Developer Fxns
     _loadNotes = () => {
@@ -38,6 +39,9 @@ const
     },
     _addNote = argv => {
         let notes = _loadNotes();
+        if (argv.title === undefined || argv.body === undefined) {
+            return logError(errMsg5);
+        }
 
         //Dup-Check for title name in PG File. Dups Not Allowed.
         notes.filter(note => {
